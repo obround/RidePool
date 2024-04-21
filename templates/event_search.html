@@ -75,12 +75,22 @@
                 <a class="btn btn-ghost flex-none" href="/add_event/">
                     <i class="material-icons" style="color:white; font-size:24px">add</i>
                 </a>
-                <a class="btn btn-ghost flex-none" href="/profile/">
-                    <i class="material-icons" style="color:white; font-size:24px">person</i>
-                </a>
+                {% if logged_in %}
+                    <a class="btn btn-ghost flex-none" href="/profile/">
+                        <i class="material-icons" style="color:white; font-size:24px">person</i>
+                    </a>
+                {% endif %}
                 <a class="btn btn-ghost flex-none" href="/notifications/">
                     <i class="material-icons" style="color:white; font-size:24px">notifications</i>
                 </a>
+                {% if not logged_in %}
+                    <a class="btn btn-ghost flex-none" href="/log_in/">
+                        <p class="text-white">Log in</p>
+                    </a>
+                    <a class="btn btn-ghost flex-none" href="/sign_up/">
+                        <p class="text-white">Sign Up</p>
+                    </a>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -91,15 +101,26 @@
         <div class="flex flex-col overflow-auto gap-3">
             {% for event in events %}
                 <div class="bg-white/20 rounded-lg p-4 text-wrap">
-                    <div class="flex flex-row pb-1.5">
+                    <div class="flex flex-row pb-1.5 gap-2">
+                        {% csrf_token %}
                         <div class="flex flex-1 items-center gap-4">
                             <h1 class="text-2xl font-black text-white">{{ event.name }}</h1>
                             <div class="badge badge-primary">{{ event.date }}</div>
                         </div>
-                        <button class="font-medium justify-end text-white p-4 rounded-lg transition bg-green-600/80 hover:bg-green-700/80 active:bg-green-800/80"
-                                onclick="buddies.showModal()">
-                            <i class="material-icons" style="color:white; font-size:24px">directions_car</i>
-                        </button>
+                        <form method="POST">
+                            <button name="register"
+                                    class="font-medium justify-end text-white p-4 rounded-lg transition bg-green-600/80 hover:bg-green-700/80 active:bg-green-800/80"
+                                    onclick="alert('Registered successfully')">
+                                Register
+                            </button>
+                            {% csrf_token %}
+                            <input name="event_name" class="text-2xl font-black text-white" value="{{ event.name }}"
+                                   hidden>
+                            <button name="buddies2"
+                                    class="font-medium justify-end text-white p-4 rounded-lg transition bg-green-600/80 hover:bg-green-700/80 active:bg-green-800/80">
+                                <i class="material-icons" style="color:white; font-size:24px">directions_car</i>
+                            </button>
+                        </form>
                     </div>
                     <article class="text-wrap text-white">{{ event.description }}</article>
                 </div>
@@ -107,43 +128,36 @@
         </div>
     </div>
 </div>
-<dialog id="buddies" class="modal shadow-lg bg-transparent">
+<dialog id="buddies" class="modal">
     <div class="flex flex-col gap-2 modal-box">
         <form method="dialog">
             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
         <h3 class="font-bold text-lg">Available Ridepool Buddies</h3>
-        <div class="flex flex-row gap-2 border-solid border rounded-xl border-slate-300 p-2">
-            <p class="py-2.5 flex-1">Jeff (2mi away)</p>
-            <button class="btn btn-square btn-success">
-                <i class="material-icons" style="color:white; font-size:22px">check</i>
-            </button>
-            <button class="btn btn-square btn-error">
-                <i class="material-icons" style="color:white; font-size:22px">close</i>
-            </button>
-        </div>
-        <div class="flex flex-row gap-2 border-solid border rounded-xl border-slate-300 p-2">
-            <p class="py-2.5 flex-1">Avery (69mi away)</p>
-            <button class="btn btn-square btn-success">
-                <i class="material-icons" style="color:white; font-size:22px">check</i>
-            </button>
-            <button class="btn btn-square btn-error">
-                <i class="material-icons" style="color:white; font-size:22px">close</i>
-            </button>
-        </div>
-        <div class="flex flex-row gap-2 border-solid border rounded-xl border-slate-300 p-2">
-            <p class="py-2.5 flex-1">Aman (42mi away)</p>
-            <button class="btn btn-square btn-success">
-                <i class="material-icons" style="color:white; font-size:22px">check</i>
-            </button>
-            <button class="btn btn-square btn-error">
-                <i class="material-icons" style="color:white; font-size:22px">close</i>
-            </button>
-        </div>
+        {% for driver in drivers %}
+            <form method="POST" class="flex flex-row gap-2 border-solid border rounded-xl border-slate-300 p-2">
+                {% csrf_token %}
+                <p class="py-2.5 flex-1">{{ driver.name }}</p>
+                <p class="py-2.5 flex-1">{{ driver.address }}</p>
+
+                <input name="driver_name" hidden value="{{ driver.name }}">
+                <input name="driver_address" hidden value="{{ driver.address }}">
+                <input name="driver_email" hidden value="{{ driver.email }}">
+
+                <button name="accept" class="btn btn-square btn-success">
+                    <i class="material-icons" style="color:white; font-size:22px">check</i>
+                </button>
+            </form>
+        {% endfor %}
     </div>
     <form method="dialog" class="modal-backdrop">
         <button>close</button>
     </form>
 </dialog>
+<script>
+    {% if show_buddies %}
+        document.getElementById("buddies").showModal()
+    {% endif %}
+</script>
 </body>
 </html>

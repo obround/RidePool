@@ -76,12 +76,22 @@
                 <a class="btn btn-ghost flex-none" href="/add_event/">
                     <i class="material-icons" style="color:white; font-size:24px">add</i>
                 </a>
-                <a class="btn btn-ghost flex-none" href="/profile/">
-                    <i class="material-icons" style="color:white; font-size:24px">person</i>
-                </a>
+                {% if logged_in %}
+                    <a class="btn btn-ghost flex-none" href="/profile/">
+                        <i class="material-icons" style="color:white; font-size:24px">person</i>
+                    </a>
+                {% endif %}
                 <a class="btn btn-ghost flex-none" href="/notifications/">
                     <i class="material-icons" style="color:white; font-size:24px">notifications</i>
                 </a>
+                {% if not logged_in %}
+                    <a class="btn btn-ghost flex-none" href="/log_in/">
+                        <p class="text-white">Log in</p>
+                    </a>
+                    <a class="btn btn-ghost flex-none" href="/sign_up/">
+                        <p class="text-white">Sign Up</p>
+                    </a>
+                {% endif %}
             </div>
         </div>
     </div>

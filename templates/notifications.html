@@ -74,12 +74,22 @@
                 <a class="btn btn-ghost flex-none" href="/add_event/">
                     <i class="material-icons" style="color:white; font-size:24px">add</i>
                 </a>
-                <a class="btn btn-ghost flex-none" href="/profile/">
-                    <i class="material-icons" style="color:white; font-size:24px">person</i>
-                </a>
+                {% if logged_in %}
+                    <a class="btn btn-ghost flex-none" href="/profile/">
+                        <i class="material-icons" style="color:white; font-size:24px">person</i>
+                    </a>
+                {% endif %}
                 <a class="btn btn-ghost flex-none" href="/notifications/">
                     <i class="material-icons" style="color:white; font-size:24px">notifications</i>
                 </a>
+                {% if not logged_in %}
+                    <a class="btn btn-ghost flex-none" href="/log_in/">
+                        <p class="text-white">Log in</p>
+                    </a>
+                    <a class="btn btn-ghost flex-none" href="/sign_up/">
+                        <p class="text-white">Sign Up</p>
+                    </a>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -91,109 +101,29 @@
         <h1 class="text-sm font-medium text-white pb-5 pt-5">Your inbox as you request and get requested for
             ridepools</h1>
         <div class="grid grid-cols-1 gap-10 overflow-auto">
-            <div class="card bg-white/20">
-                <div class="card-body">
-                    <div>
-                        <h2 class="card-title text-white">
-                            <div class="flex flex-1 items-baseline">
-                                Aaditya Rana
-                            </div>
-                        </h2>
-                        <p class="text-white">12345 Abc Pl NW 12343 Italy, USA (2.1 mi)</p>
-                    </div>
-                    <div class="join join-horizontal">
-                        <button class="flex-1 btn join-item btn-success">
-                            <i class="material-icons" style="color:white; font-size:22px">check</i>
-                        </button>
-                        <button class="flex-1 btn join-item btn-error">
-                            <i class="material-icons" style="color:white; font-size:22px">close</i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="card bg-white/20">
-                <div class="card-body">
-                    <div>
-                        <h2 class="card-title text-white">
-                            <div class="flex flex-1 items-baseline">
-                                Aaditya Rana
-                            </div>
-                        </h2>
-                        <p class="text-white">12345 Abc Pl NW 12343 Italy, USA (2.1 mi)</p>
-                    </div>
-                    <div class="join join-horizontal">
-                        <button class="flex-1 btn join-item btn-success">
-                            <i class="material-icons" style="color:white; font-size:22px">check</i>
-                        </button>
-                        <button class="flex-1 btn join-item btn-error">
-                            <i class="material-icons" style="color:white; font-size:22px">close</i>
-                        </button>
+            {% for notif in notifications %}
+                <div class="card bg-white/20">
+                    <div class="card-body">
+                        <div>
+                            <h2 class="card-title text-white">
+                                <div class="flex flex-1 items-baseline">
+                                    {{ notif.name }}
+                                </div>
+                            </h2>
+                            <p class="text-white">{{ notif.address }}</p>
+                        </div>
+                        <form method="POST" class="join join-horizontal">
+                            <button class="flex-1 btn join-item btn-success">
+                                <i class="material-icons" style="color:white; font-size:22px">check</i>
+                            </button>
+                            <button class="flex-1 btn join-item btn-error">
+                                <i class="material-icons" style="color:white; font-size:22px">close</i>
+                            </button>
+                        </form>
                     </div>
                 </div>
-            </div>
-            <div class="card bg-white/20">
-                <div class="card-body">
-                    <div>
-                        <h2 class="card-title text-white">
-                            <div class="flex flex-1 items-baseline">
-                                Aaditya Rana
-                            </div>
-                        </h2>
-                        <p class="text-white">12345 Abc Pl NW 12343 Italy, USA (2.1 mi)</p>
-                    </div>
-                    <div class="join join-horizontal">
-                        <button class="flex-1 btn join-item btn-success">
-                            <i class="material-icons" style="color:white; font-size:22px">check</i>
-                        </button>
-                        <button class="flex-1 btn join-item btn-error">
-                            <i class="material-icons" style="color:white; font-size:22px">close</i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="card bg-white/20">
-                <div class="card-body">
-                    <div>
-                        <h2 class="card-title text-white">
-                            <div class="flex flex-1 items-baseline">
-                                Aaditya Rana
-                            </div>
-                        </h2>
-                        <p class="text-white">12345 Abc Pl NW 12343 Italy, USA (2.1 mi)</p>
-                    </div>
-                    <div class="join join-horizontal">
-                        <button class="flex-1 btn join-item btn-success">
-                            <i class="material-icons" style="color:white; font-size:22px">check</i>
-                        </button>
-                        <button class="flex-1 btn join-item btn-error">
-                            <i class="material-icons" style="color:white; font-size:22px">close</i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="card bg-white/20">
-                <div class="card-body">
-                    <div>
-                        <h2 class="card-title text-white">
-                            <div class="flex flex-1 items-baseline">
-                                Aaditya Rana
-                            </div>
-                        </h2>
-                        <p class="text-white">12345 Abc Pl NW 12343 Italy, USA (2.1 mi)</p>
-                    </div>
-                    <div class="join join-horizontal">
-                        <button class="flex-1 btn join-item btn-success">
-                            <i class="material-icons" style="color:white; font-size:22px">check</i>
-                        </button>
-                        <button class="flex-1 btn join-item btn-error">
-                            <i class="material-icons" style="color:white; font-size:22px">close</i>
-                        </button>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
-</div>
-</div>
 </body>
 </html>

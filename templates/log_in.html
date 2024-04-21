@@ -8,15 +8,15 @@
     {% tailwind_css %}
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
-    <title>Register Event</title>
+    <title>Log In</title>
     <style>
         #gradient-canvas {
             width: 100%;
             height: 100%;
-            --gradient-color-1: #62215f;
-            --gradient-color-2: #ff0064;
-            --gradient-color-3: #820bce;
-            --gradient-color-4: #720029;
+            --gradient-color-1: #32a6a8;
+            --gradient-color-2: #8332a8;
+            --gradient-color-3: #a632a8;
+            --gradient-color-4: #a87b32;
         }
 
         .image-holder {
@@ -96,41 +96,33 @@
     </div>
 
     <div class="flex flex-col absolute top-28 inset-14 backdrop-filter backdrop-blur-3xl rounded-lg bg-white/20 p-14">
-        <div class="grid grid-cols-2 gap-10">
-            <h1 class="text-6xl font-black text-white gap-1 pt-4">Register an Event</h1>
+        <div class="grid grid-cols-2 gap-10 pb-4">
+            <h1 class="text-6xl font-black text-white gap-1 py-4">Log In</h1>
         </div>
-        <h1 class="text-sm font-medium text-white pb-5 pt-5">So you've worked really hard on your event and it's looking
-            sick— now let's make sure people show up!</h1>
-        <form method="POST" class="flex flex-col gap-3 h-full overflow-auto">
+        <form method="POST" class="flex flex-col gap-5 overflow-auto">
             {% csrf_token %}
             <div class="flex-1 gap-2">
                 <div class="relative w-full">
-                    <p class="absolute top-0 start-0 p-2.5 h-full bg-white/20 text-white font-bold">Event Name
-                        &nbsp;</p>
-                    <input type="text" name="event_name"
-                           class="ps-32 w-full rounded-lg bg-white/20 border-white/20 text-white"/>
+                    <p class="absolute top-0 start-0 p-2.5 h-full bg-white/20 text-white font-bold">Email
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <input type="text" name="email"
+                           class="ps-28 w-full rounded-lg bg-white/20 border-white/20 text-white"/>
                 </div>
             </div>
-            {#            <div class="flex-1 gap-2">#}
-            {#                <div class="relative w-full">#}
-            {#                    <p class="absolute top-0 start-0 p-2.5 h-full bg-white/20 text-white font-bold">Organizer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>#}
-            {#                    <input type="text" name="search_content"#}
-            {#                           class="ps-32 w-full rounded-lg bg-white/20 border-white/20 text-white"/>#}
-            {#                </div>#}
-            {#            </div>#}
             <div class="flex-1 gap-2">
                 <div class="relative w-full">
-                    <p class="absolute top-0 start-0 p-2.5 h-full bg-white/20 text-white font-bold">Event Date &nbsp;&nbsp;&nbsp;</p>
-                    <input type="date" name="event_date" value="2024-03-22" min="2018-01-01" max="2026-12-31"
-                           class="ps-32 w-full rounded-lg bg-white/20 border-white/20 text-white"/>
+                    <p class="absolute top-0 start-0 p-2.5 h-full bg-white/20 text-white font-bold">Password</p>
+                    <input type="text" name="password"
+                           class="ps-28 w-full rounded-lg bg-white/20 border-white/20 text-white"/>
                 </div>
             </div>
-            <textarea class="w-full h-full rounded-lg bg-white/20 border-white/20 text-white p-2 placeholder-slate-200"
-                      placeholder="Enter a description for your event"
-                      name="event_description"></textarea>
-            <button class="font-medium justify-end text-white p-4 rounded-lg transition bg-pink-500/80 hover:bg-pink-600/80 active:bg-pink-700/80">
-                Submit
+            <button class="font-medium justify-end text-white p-4 rounded-lg transition bg-purple-600/80 hover:bg-purple-700/80 active:bg-purple-800/80">
+                Log In
             </button>
+            <div class="flex flex row">
+                <p class="text-white font-medium">Don't have an account yet?</p>&nbsp;
+                <a class="text-white font-bold" href="/sign_up/">Sign up</a>
+            </div>
         </form>
     </div>
 </div>

@@ -8,15 +8,15 @@
     {% tailwind_css %}
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
-    <title>Register Event</title>
+    <title>Log In</title>
     <style>
         #gradient-canvas {
             width: 100%;
             height: 100%;
-            --gradient-color-1: #62215f;
-            --gradient-color-2: #ff0064;
-            --gradient-color-3: #820bce;
-            --gradient-color-4: #720029;
+            --gradient-color-1: #f5f242;
+            --gradient-color-2: #42f5a7;
+            --gradient-color-3: #5d42f5;
+            --gradient-color-4: #f5424b;
         }
 
         .image-holder {
@@ -96,40 +96,44 @@
     </div>
 
     <div class="flex flex-col absolute top-28 inset-14 backdrop-filter backdrop-blur-3xl rounded-lg bg-white/20 p-14">
-        <div class="grid grid-cols-2 gap-10">
-            <h1 class="text-6xl font-black text-white gap-1 pt-4">Register an Event</h1>
+        <div class="grid grid-cols-2 gap-10 pb-4">
+            <h1 class="text-6xl font-black text-white gap-1 py-4">Sign Up</h1>
         </div>
-        <h1 class="text-sm font-medium text-white pb-5 pt-5">So you've worked really hard on your event and it's looking
-            sick— now let's make sure people show up!</h1>
-        <form method="POST" class="flex flex-col gap-3 h-full overflow-auto">
+        <form method="POST" class="flex flex-col gap-5 overflow-auto">
             {% csrf_token %}
             <div class="flex-1 gap-2">
                 <div class="relative w-full">
-                    <p class="absolute top-0 start-0 p-2.5 h-full bg-white/20 text-white font-bold">Event Name
-                        &nbsp;</p>
-                    <input type="text" name="event_name"
-                           class="ps-32 w-full rounded-lg bg-white/20 border-white/20 text-white"/>
+                    <p class="absolute top-0 start-0 p-2.5 h-full bg-white/20 text-white font-bold">Name
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <input type="text" name="name"
+                           class="ps-28 w-full rounded-lg bg-white/20 border-white/20 text-white"/>
                 </div>
             </div>
-            {#            <div class="flex-1 gap-2">#}
-            {#                <div class="relative w-full">#}
-            {#                    <p class="absolute top-0 start-0 p-2.5 h-full bg-white/20 text-white font-bold">Organizer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>#}
-            {#                    <input type="text" name="search_content"#}
-            {#                           class="ps-32 w-full rounded-lg bg-white/20 border-white/20 text-white"/>#}
-            {#                </div>#}
-            {#            </div>#}
             <div class="flex-1 gap-2">
                 <div class="relative w-full">
-                    <p class="absolute top-0 start-0 p-2.5 h-full bg-white/20 text-white font-bold">Event Date &nbsp;&nbsp;&nbsp;</p>
-                    <input type="date" name="event_date" value="2024-03-22" min="2018-01-01" max="2026-12-31"
-                           class="ps-32 w-full rounded-lg bg-white/20 border-white/20 text-white"/>
+                    <p class="absolute top-0 start-0 p-2.5 h-full bg-white/20 text-white font-bold">Email
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <input type="text" name="email"
+                           class="ps-28 w-full rounded-lg bg-white/20 border-white/20 text-white"/>
                 </div>
             </div>
-            <textarea class="w-full h-full rounded-lg bg-white/20 border-white/20 text-white p-2 placeholder-slate-200"
-                      placeholder="Enter a description for your event"
-                      name="event_description"></textarea>
-            <button class="font-medium justify-end text-white p-4 rounded-lg transition bg-pink-500/80 hover:bg-pink-600/80 active:bg-pink-700/80">
-                Submit
+            <div class="flex-1 gap-2">
+                <div class="relative w-full">
+                    <p class="absolute top-0 start-0 p-2.5 h-full bg-white/20 text-white font-bold">Address
+                        &nbsp;&nbsp;</p>
+                    <input type="text" name="address"
+                           class="ps-28 w-full rounded-lg bg-white/20 border-white/20 text-white"/>
+                </div>
+            </div>
+            <div class="flex-1 gap-2">
+                <div class="relative w-full">
+                    <p class="absolute top-0 start-0 p-2.5 h-full bg-white/20 text-white font-bold">Password</p>
+                    <input type="password" name="password"
+                           class="ps-28 w-full rounded-lg bg-white/20 border-white/20 text-white"/>
+                </div>
+            </div>
+            <button class="font-medium justify-end text-white p-4 rounded-lg transition bg-red-600/60 hover:bg-red-600/70 active:bg-red-600/80">
+                Sign Up
             </button>
         </form>
     </div>

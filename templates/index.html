@@ -61,18 +61,28 @@
             <div class="flex-1 gap-2">
             </div>
             <div class="px-6">
-                <a class="btn btn-ghost flex-none" href="gift_shop/">
+                <a class="btn btn-ghost flex-none" href="/gift_shop/">
                     <i class="material-icons" style="color:white; font-size:24px">redeem</i>
                 </a>
-                <a class="btn btn-ghost flex-none" href="add_event/">
+                <a class="btn btn-ghost flex-none" href="/add_event/">
                     <i class="material-icons" style="color:white; font-size:24px">add</i>
                 </a>
-                <a class="btn btn-ghost flex-none" href="profile/">
-                    <i class="material-icons" style="color:white; font-size:24px">person</i>
-                </a>
-                <a class="btn btn-ghost flex-none" href="notifications/">
+                {% if logged_in %}
+                    <a class="btn btn-ghost flex-none" href="/profile/">
+                        <i class="material-icons" style="color:white; font-size:24px">person</i>
+                    </a>
+                {% endif %}
+                <a class="btn btn-ghost flex-none" href="/notifications/">
                     <i class="material-icons" style="color:white; font-size:24px">notifications</i>
                 </a>
+                {% if not logged_in %}
+                    <a class="btn btn-ghost flex-none" href="/log_in/">
+                        <p class="text-white">Log in</p>
+                    </a>
+                    <a class="btn btn-ghost flex-none" href="/sign_up/">
+                        <p class="text-white">Sign Up</p>
+                    </a>
+                {% endif %}
             </div>
         </div>
     </div>
