@@ -78,10 +78,10 @@
                     <a class="btn btn-ghost flex-none" href="/profile/">
                         <i class="material-icons" style="color:white; font-size:24px">person</i>
                     </a>
+                    <a class="btn btn-ghost flex-none" href="/notifications/">
+                        <i class="material-icons" style="color:white; font-size:24px">notifications</i>
+                    </a>
                 {% endif %}
-                <a class="btn btn-ghost flex-none" href="/notifications/">
-                    <i class="material-icons" style="color:white; font-size:24px">notifications</i>
-                </a>
                 {% if not logged_in %}
                     <a class="btn btn-ghost flex-none" href="/log_in/">
                         <p class="text-white">Log in</p>
@@ -112,8 +112,10 @@
                             </h2>
                             <p class="text-white">{{ notif.address }}</p>
                         </div>
-                        <form method="POST" class="join join-horizontal">
+                        <form method="POST" class="flex flex-row">
                             {% csrf_token %}
+                            <input name="notif_name" value="{{ notif.name }}" hidden>
+                            <input name="notif_value" value="{{ notif.address }}" hidden>
                             <button name="accept" class="flex-1 btn join-item btn-success">
                                 <i class="material-icons" style="color:white; font-size:22px">check</i>
                             </button>

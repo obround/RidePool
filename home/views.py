@@ -114,9 +114,7 @@ def notifications(request):
     user = Users.objects.filter(email__exact=request.session["email"])[0]
     if request.method == "POST":
         if "accept" in request.POST or "reject" in request.POST:
-            user.notifications.remove({"name": request.session["name"], "address": request.session["address"]})
-            user.save()
-            user.notifications.remove({"name": request.session["name"], "address": request.session["address"]})
+            user.notifications.remove({"name": request.POST["notif_name"], "address": request.POST["notif_value"]})
             user.save()
     return render(
         request,
