@@ -1,0 +1,8 @@
+{
+  "name": "carpool",
+  "version": "1.0.0",
+  "dependencies": {
+    "@tailwindcss/forms": "latest",
+    "preline": "==2.1.0"
+  }
+}

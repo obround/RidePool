@@ -1,0 +1,177 @@
+{% load static tailwind_tags %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% tailwind_css %}
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css"/>
+    <title>Gift Shop</title>
+    <style>
+        #gradient-canvas {
+            width: 100%;
+            height: 100%;
+            --gradient-color-1: #0834c4;
+            --gradient-color-2: #227a85;
+            --gradient-color-3: #a83232;
+            --gradient-color-4: #9132a8;
+        }
+
+        .image-holder {
+            transform-origin: left top;
+            overflow: hidden;
+        }
+
+        .image-holder canvas {
+            transform-origin: left top;
+        }
+
+        ::placeholder {
+            color: white;
+        }
+    </style>
+    <script type="module">
+        import {Gradient} from '{% static '/Gradient.js' %}'
+
+        const gradient = new Gradient()
+        gradient.initGradient('#gradient-canvas')
+        fitToContainer(canvas);
+
+        function fitToContainer(canvas) {
+            // Make it visually fill the positioned parent
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';
+            // ...then set the internal size to match
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+    </script>
+</head>
+<body>
+<div>
+    <div class="image-holder w-screen h-screen">
+        <canvas class="w-full h-full" id="gradient-canvas" data-transition-in></canvas>
+        <div class="navbar gap-5 absolute top-0 backdrop-filter backdrop-blur-3xl rounded-lg bg-white/20">
+            <div class="flex flex-row gap-1 items-baseline">
+                <a class="flex-none text-3xl font-black text-white pl-6" href="/">RidePool</a>
+                <p class="text-sm text-white invisible lg:visible">For School</p>
+            </div>
+            <div class="flex-1 gap-2 invisible lg:visible">
+                <form method="POST" class="relative w-full">
+                    {% csrf_token %}
+                    <input type="text" placeholder="Search for ridepool events..." name="search_content"
+                           class="pe-16 w-full rounded-lg bg-white/20 border-white/20 text-white placeholder-slate-200"/>
+                    <button class="absolute top-0 end-0 p-2.5 font-medium h-full text-white bg-white/20 rounded-e-lg transition hover:bg-white/40 active:bg-white/50">
+                        <i class="material-icons" style="color:white; font-size:22px">search</i>
+                    </button>
+                </form>
+            </div>
+            <div class="px-6">
+                <a class="btn btn-ghost flex-none" href="/gift_shop/">
+                    <i class="material-icons" style="color:white; font-size:24px">redeem</i>
+                </a>
+                <a class="btn btn-ghost flex-none" href="/add_event/">
+                    <i class="material-icons" style="color:white; font-size:24px">add</i>
+                </a>
+                <a class="btn btn-ghost flex-none" href="/profile/">
+                    <i class="material-icons" style="color:white; font-size:24px">person</i>
+                </a>
+                <a class="btn btn-ghost flex-none" href="/notifications/">
+                    <i class="material-icons" style="color:white; font-size:24px">notifications</i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col absolute top-28 inset-14 backdrop-filter backdrop-blur-3xl rounded-lg bg-white/20 p-14">
+        <div class="grid grid-cols-2 gap-10">
+            <h1 class="text-6xl font-black text-white gap-1 pt-4">Pool Store</h1>
+            <div class="card bg-white/20 invisible md:visible">
+                <div class="card-body">
+                    <h2 class="card-title text-white">
+                        Credits Available
+                        <div class="badge badge-secondary badge-lg p-4 pl-4">2000©</div>
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+
+        <h1 class="text-sm font-medium text-white pb-5 pt-5">Welcome to the Store! Use your credits to choose one of the
+            many
+            awesome rewards!</h1>
+        <div class="grid grid-cols-2 gap-10 overflow-auto">
+            <div class="card bg-white/20 w-full">
+                <div class="card-body">
+                    <div>
+                        <h2 class="card-title text-white">
+                            <div class="flex flex-1 items-baseline">
+                                Amazon.com &nbsp; <i class="fa fa-amazon" style="color:white; font-size:18px"></i>
+                            </div>
+                            <div class="pl-4 badge badge-secondary badge-lg">500©</div>
+                        </h2>
+                        <p class="text-white">$20 EGift Card</p>
+                    </div>
+                    <button class="font-medium justify-end text-white p-4 rounded-lg transition bg-red-400/80 hover:bg-red-500/80 active:bg-red-600/80">
+                        Buy
+                    </button>
+                </div>
+            </div>
+            <div class="card bg-white/20 w-full">
+                <div class="card-body">
+                    <div>
+                        <h2 class="card-title text-white">
+                            <div class="flex flex-1 items-baseline">
+                                Apple.com &nbsp; <i class="fa fa-apple" style="color:white; font-size:18px"></i>
+                            </div>
+                            <div class="pl-4 badge badge-secondary badge-lg">500©</div>
+                        </h2>
+                        <p class="text-white">$20 EGift Card</p>
+                    </div>
+                    <button class="font-medium justify-end text-white p-4 rounded-lg transition bg-red-400/80 hover:bg-red-500/80 active:bg-red-600/80">
+                        Buy
+                    </button>
+                </div>
+            </div>
+            <div class="card bg-white/20 w-full">
+                <div class="card-body">
+                    <div>
+                        <h2 class="card-title text-white">
+                            <div class="flex flex-1 items-baseline">
+                                Spotify &nbsp; <i class="fa fa-spotify" style="color: white; font-size: 18px"></i>
+                            </div>
+                            <div class="pl-4 badge badge-secondary badge-lg">1000©</div>
+                        </h2>
+                        <p class="text-white">3 Months Premium</p>
+                    </div>
+                    <button class="font-medium justify-end text-white p-4 rounded-lg transition bg-red-400/80 hover:bg-red-500/80 active:bg-red-600/80">
+                        Buy
+                    </button>
+                </div>
+            </div>
+            <div class="card bg-white/20 w-full">
+                <div class="card-body">
+                    <div>
+                        <h2 class="card-title text-white">
+                            <div class="flex flex-1 items-baseline">
+                                Youtube &nbsp; <i class="fa fa-youtube" style="color: white; font-size: 20px"></i>
+                            </div>
+                            <div class="pl-4 badge badge-secondary badge-lg">1000©</div>
+                        </h2>
+                        <p class="text-white">3 Months YouTube Premium</p>
+                    </div>
+                    <button class="font-medium justify-end text-white p-4 rounded-lg transition bg-red-400/80 hover:bg-red-500/80 active:bg-red-600/80">
+                        Buy
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+</body>
+</html>
