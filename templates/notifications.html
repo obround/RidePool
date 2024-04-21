@@ -113,10 +113,11 @@
                             <p class="text-white">{{ notif.address }}</p>
                         </div>
                         <form method="POST" class="join join-horizontal">
-                            <button class="flex-1 btn join-item btn-success">
+                            {% csrf_token %}
+                            <button name="accept" class="flex-1 btn join-item btn-success">
                                 <i class="material-icons" style="color:white; font-size:22px">check</i>
                             </button>
-                            <button class="flex-1 btn join-item btn-error">
+                            <button name="reject" class="flex-1 btn join-item btn-error">
                                 <i class="material-icons" style="color:white; font-size:22px">close</i>
                             </button>
                         </form>

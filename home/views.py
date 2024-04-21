@@ -111,11 +111,18 @@ def gift_shop(request):
 
 @searchable
 def notifications(request):
+    user = Users.objects.filter(email__exact=request.session["email"])[0]
+    if request.method == "POST":
+        if "accept" in request.POST or "reject" in request.POST:
+            user.notifications.remove({"name": request.session["name"], "address": request.session["address"]})
+            user.save()
+            user.notifications.remove({"name": request.session["name"], "address": request.session["address"]})
+            user.save()
     return render(
         request,
         "notifications.html",
         {
-            "notifications": Users.objects.filter(email__exact=request.session["email"])[0].notifications,
+            "notifications": user.notifications,
             "logged_in": request.session.get("logged_in", False)
         }
     )
